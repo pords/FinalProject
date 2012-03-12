@@ -1,6 +1,7 @@
 #include "cinder/app/AppBasic.h"
 #include "cinder/gl/gl.h"
-#include "PlayerShip.hpp"
+#include "SceneManager.hpp"
+#include "MainScene.hpp"
 #include <list>
 
 #define FPS 60.0f
@@ -11,8 +12,6 @@ using namespace ci::app;
 using namespace std;
 using namespace gl;
 
-
-
 class FinalProjectApp : public AppBasic {
 public:
     void prepareSettings( Settings *settings );
@@ -22,10 +21,10 @@ public:
 	void mouseDrag( MouseEvent event );	
 	void mouseUp( MouseEvent event );	
 	void update();
-	void draw();    
+	void draw();
     
-    Vec2f mMouseLoc;
-    PlayerShip ps;
+    MainScene ms;
+    SceneManager sm;
 };
 
 void FinalProjectApp::prepareSettings( Settings *settings ){
@@ -39,64 +38,35 @@ void FinalProjectApp::setup()
 {
     enableAlphaBlending();
     hideCursor();
-    ps.init();
-    /*ps.pg.firing = false;
-    ps.pg.t = 0;*/
+    sm.push(&ms);
+    ms.setup();
 }
 
 void FinalProjectApp::mouseDown( MouseEvent event ) {
-    ps.pg.firing = true;
-    mMouseLoc = event.getPos();
+    ms.mouseDown(event);
 }
 
 void FinalProjectApp::mouseUp( MouseEvent event ){
-    ps.pg.firing = false;
+    ms.mouseUp(event);
 }
 
 void FinalProjectApp::mouseMove( MouseEvent event ) {
-    mMouseLoc = event.getPos();
+    ms.mouseMove(event);
 }
 
 void FinalProjectApp::mouseDrag( MouseEvent event ) {
-    //mouseDown( event );
-    //mouseMove( event );
-    
-    //ps.pg.firing = true;
-    
-    mMouseLoc = event.getPos();
-    
-    //ps.update(mMouseLoc);//to delete
+    ms.mouseDrag(event);
 }
 
 void FinalProjectApp::update()
 {
-    /*if(firing)
-    {
-        if(getElapsedSeconds() - t > 1.0/BPS)
-        {
-            bullets.push_back(PlayerBullet(mMouseLoc));
-            t = getElapsedSeconds();
-        }
-    }
-    
-    for( list<PlayerBullet>::iterator p = bullets.begin(); p != bullets.end(); ++p ){
-        p->update();
-        if( !p->isAlive )
-        {
-            bullets.erase(p);
-        }
-    }*/
-    
-    ps.update(mMouseLoc);
+    ms.update();
 }
 
 void FinalProjectApp::draw()
 {
 	clear( Color( 0, 0, 0 ) );
-    ps.draw();
-    /*for( list<PlayerBullet>::iterator p = bullets.begin(); p != bullets.end(); ++p ){
-        p->draw();
-    }*/
+    ms.draw();
 }
 
 

@@ -21,6 +21,7 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		9A01D8E615029F030062CE89 /* PlayerShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A01D8E515029F030062CE89 /* PlayerShip.cpp */; };
 		9A01D8ED150775BC0062CE89 /* PlayerBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A01D8EC150775BC0062CE89 /* PlayerBullet.cpp */; };
+		9A7EE713150E665C0003EF9C /* MainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7EE712150E665C0003EF9C /* MainScene.cpp */; };
 		9AEEC53C1508B5D800FCD132 /* Pship2.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9AEEC53B1508B5D800FCD132 /* Pship2.bmp */; };
 		9AEEC5401508C95400FCD132 /* Ship.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AEEC53F1508C95400FCD132 /* Ship.png */; };
 		9AEEC5431508CC4C00FCD132 /* ShipLeft1.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AEEC5411508CC4B00FCD132 /* ShipLeft1.png */; };
@@ -53,6 +54,8 @@
 		9A01D8EB150770BA0062CE89 /* PlayerBullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayerBullet.hpp; sourceTree = "<group>"; };
 		9A01D8EC150775BC0062CE89 /* PlayerBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerBullet.cpp; sourceTree = "<group>"; };
 		9A7EE70F150E5A8C0003EF9C /* SceneManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SceneManager.hpp; sourceTree = "<group>"; };
+		9A7EE711150E65F40003EF9C /* MainScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainScene.hpp; sourceTree = "<group>"; };
+		9A7EE712150E665C0003EF9C /* MainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainScene.cpp; sourceTree = "<group>"; };
 		9AEEC53B1508B5D800FCD132 /* Pship2.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Pship2.bmp; sourceTree = "<group>"; };
 		9AEEC53F1508C95400FCD132 /* Ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ship.png; sourceTree = "<group>"; };
 		9AEEC5411508CC4B00FCD132 /* ShipLeft1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShipLeft1.png; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 				9A01D8E515029F030062CE89 /* PlayerShip.cpp */,
 				9AEEC5541508FB5E00FCD132 /* PlayerGun.cpp */,
 				9A01D8EC150775BC0062CE89 /* PlayerBullet.cpp */,
+				9A7EE712150E665C0003EF9C /* MainScene.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -149,6 +153,7 @@
 				9AEEC54F1508FA5100FCD132 /* PlayerGun.hpp */,
 				9A01D8EB150770BA0062CE89 /* PlayerBullet.hpp */,
 				9A7EE70F150E5A8C0003EF9C /* SceneManager.hpp */,
+				9A7EE711150E65F40003EF9C /* MainScene.hpp */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				9A01D8E615029F030062CE89 /* PlayerShip.cpp in Sources */,
 				9A01D8ED150775BC0062CE89 /* PlayerBullet.cpp in Sources */,
 				9AEEC5551508FB5F00FCD132 /* PlayerGun.cpp in Sources */,
+				9A7EE713150E665C0003EF9C /* MainScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
