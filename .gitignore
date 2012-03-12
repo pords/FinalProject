@@ -1,4 +1,5 @@
-xcuserdata
+FinalProject.xcodeproj/xcuserdata/*
+FinalProject.xcodeproj/project.xcworkspace/xcuserdata/*
 
 .DS_Store
 *.swp
