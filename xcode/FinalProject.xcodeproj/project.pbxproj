@@ -56,6 +56,7 @@
 		9A7EE70F150E5A8C0003EF9C /* SceneManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SceneManager.hpp; sourceTree = "<group>"; };
 		9A7EE711150E65F40003EF9C /* MainScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainScene.hpp; sourceTree = "<group>"; };
 		9A7EE712150E665C0003EF9C /* MainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainScene.cpp; sourceTree = "<group>"; };
+		9A7EE714150E745B0003EF9C /* PauseScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; path = PauseScene.hpp; sourceTree = "<group>"; };
 		9AEEC53B1508B5D800FCD132 /* Pship2.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Pship2.bmp; sourceTree = "<group>"; };
 		9AEEC53F1508C95400FCD132 /* Ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ship.png; sourceTree = "<group>"; };
 		9AEEC5411508CC4B00FCD132 /* ShipLeft1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShipLeft1.png; sourceTree = "<group>"; };
@@ -154,6 +155,7 @@
 				9A01D8EB150770BA0062CE89 /* PlayerBullet.hpp */,
 				9A7EE70F150E5A8C0003EF9C /* SceneManager.hpp */,
 				9A7EE711150E65F40003EF9C /* MainScene.hpp */,
+				9A7EE714150E745B0003EF9C /* PauseScene.hpp */,
 			);
 			name = Headers;
 			sourceTree = "<group>";

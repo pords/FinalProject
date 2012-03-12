@@ -20,10 +20,10 @@ public:
 	virtual void update();
 	//void onKeyUp(ci::app::KeyEvent &e);
     void setup();
-    void mouseDown( MouseEvent event );
-    void mouseUp( MouseEvent event );
-    void mouseMove( MouseEvent event );    
-    void mouseDrag( MouseEvent event );
+    void mouseDown( MouseEvent &event );
+    void mouseUp( MouseEvent &event );
+    void mouseMove( MouseEvent &event );    
+    void mouseDrag( MouseEvent &event );
     
     Vec2f mMouseLoc;
     PlayerShip ps;

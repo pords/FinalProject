@@ -22,20 +22,20 @@ void MainScene::setup()
     ps.init();
 }
 
-void MainScene::mouseDown( MouseEvent event ) {
+void MainScene::mouseDown( MouseEvent &event ) {
     ps.pg.firing = true;
     mMouseLoc = event.getPos();
 }
 
-void MainScene::mouseUp( MouseEvent event ){
+void MainScene::mouseUp( MouseEvent &event ){
     ps.pg.firing = false;
 }
 
-void MainScene::mouseMove( MouseEvent event ) {
+void MainScene::mouseMove( MouseEvent &event ) {
     mMouseLoc = event.getPos();
 }
 
-void MainScene::mouseDrag( MouseEvent event ) {
+void MainScene::mouseDrag( MouseEvent &event ) {
     mMouseLoc = event.getPos();
 }
 
