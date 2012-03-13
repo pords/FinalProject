@@ -14,10 +14,10 @@ using namespace gl;
 
 MainScene::MainScene()
 {
-
+    
 }
 
-void MainScene::setup()
+void MainScene::onLoad()
 {
     ps.init();
 }
@@ -40,7 +40,8 @@ void MainScene::mouseDrag( MouseEvent &event ) {
 }
 
 void MainScene::update()
-{    ps.update(mMouseLoc);
+{
+    ps.update(mMouseLoc);
 }
 
 void MainScene::draw()

@@ -1,5 +1,7 @@
 #include <iostream>
 #include "PlayerGun.hpp"
+#include "cinder/ImageIo.h"
+#include "cinder/gl/Texture.h"
 
 #define BPS 30
 
@@ -29,10 +31,15 @@ void PlayerGun::update(Vec2f mMouseLoc)
     }
 }
 
+void PlayerGun::init()
+{
+    bulletTexture = Texture(loadImage(loadResource("Bullet1.png")));
+}
+
 void PlayerGun::draw()
 {
     for( list<PlayerBullet>::iterator p = bullets.begin(); p != bullets.end(); ++p ){
-        p->draw();
+        p->draw(bulletTexture);
     }
 }
 

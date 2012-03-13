@@ -39,7 +39,7 @@ void FinalProjectApp::setup()
     enableAlphaBlending();
     hideCursor();
     sm.push(&ms);
-    ms.setup();
+    //ms.setup();
 }
 
 void FinalProjectApp::mouseDown( MouseEvent event ) {

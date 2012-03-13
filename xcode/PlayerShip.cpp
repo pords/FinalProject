@@ -9,12 +9,14 @@
 PlayerShip::PlayerShip()
 {
     mMouseLoc = Vec2f(0,0);
+    //shipTexture = Texture( loadImage( loadResource( "Ship.png" ) ) );
     //tween = 0;
 }
 
 void PlayerShip::init()
 {
     shipTexture = Texture( loadImage( loadResource( "Ship.png" ) ) );
+    pg.init();
 }
 
 void PlayerShip::update(Vec2f location)

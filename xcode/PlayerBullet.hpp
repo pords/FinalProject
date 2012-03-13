@@ -16,10 +16,14 @@ public:
     PlayerBullet();
     PlayerBullet(Vec2f mMouseLoc);
     void update();
-    void draw();
+    void draw(Texture bullet);
     void collide();
     Vec2f getLocation();
     bool isAlive;
+    
+    //Texture bullet( loadImage( loadResource( "Bullet1.png" ) ) );
+    //Texture * bulletTexture;
+    //void init();
 private:
     float damage;
     Vec2f location;
