@@ -12,10 +12,7 @@ using namespace ci::app;
 using namespace std;
 using namespace gl;
 
-MainScene::MainScene()
-{
-    
-}
+bool paused = false;
 
 void MainScene::onLoad()
 {
@@ -46,5 +43,13 @@ void MainScene::update()
 
 void MainScene::draw()
 {
+    gl::color(1.f,1.f,1.f);
     ps.draw();
+}
+
+void MainScene::onKeyUp(KeyEvent &e){
+    if ( e.getCode() == KeyEvent::KEY_SPACE ) {
+        paused = true;
+        getManager()->push(&pause);
+    }
 }

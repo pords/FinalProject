@@ -13,12 +13,13 @@ PlayerGun::PlayerGun()
 
 void PlayerGun::update(Vec2f mMouseLoc)
 {
+    t += 1/ci::app::AppBasic::get()->getFrameRate(); 
     if(firing)
     {
-        if(getElapsedSeconds() - t > 1.0/BPS)
+        if( t > 1.0/BPS)
         {
             bullets.push_back(PlayerBullet(mMouseLoc));
-            t = getElapsedSeconds();
+            t = 0;
         }
     }
     

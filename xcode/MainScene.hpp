@@ -3,6 +3,7 @@
 
 #include "SceneManager.hpp"
 #include "PlayerShip.hpp"
+#include "PauseScene.hpp"
 #include "cinder/gl/gl.h"
 #include "cinder/app/AppBasic.h"
 #include "cinder/ImageIo.h"
@@ -19,13 +20,13 @@ class MainScene : public SceneManager::Scene {
 		//delete this;
 	}
     
-    Texture bulletTexture;
-    //static Texture bulletTexture( loadImage( loadResource( "Bullet1.png" ) ) );
+    PauseScene pause;
+    
 public:
-	MainScene();
+	MainScene() : pause(this) {};
 	virtual void draw();
 	virtual void update();
-	//void onKeyUp(ci::app::KeyEvent &e);
+	void onKeyUp(KeyEvent &e);
     void setup();
     void mouseDown( MouseEvent &event );
     void mouseUp( MouseEvent &event );

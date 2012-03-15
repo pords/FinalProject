@@ -23,8 +23,8 @@ public:
 		virtual void draw() = 0;
 		virtual void update() = 0;
 		
-		//virtual void onKeyUp(ci::app::KeyEvent &e) {}
-		//virtual void onKeyDown(ci::app::KeyEvent &e) {}
+		virtual void onKeyUp(ci::app::KeyEvent &e) {}
+		virtual void onKeyDown(ci::app::KeyEvent &e) {}
 		
         virtual void onLoad(){};
         
@@ -78,7 +78,7 @@ public:
 			m_scenes.back()->update();		
 	}
 	
-	/*void onKeyUp(ci::app::KeyEvent &e) {
+	void onKeyUp(ci::app::KeyEvent &e) {
 		if ( !m_scenes.empty() )
 			m_scenes.back()->onKeyUp(e);
 	}
@@ -86,7 +86,7 @@ public:
 	void onKeyDown(ci::app::KeyEvent &e) {
 		if ( !m_scenes.empty() )
 			m_scenes.back()->onKeyDown(e);
-	}*/\
+	}
 
 	
 private:

@@ -19,7 +19,8 @@ public:
     void mouseDown( MouseEvent event);
     void mouseMove( MouseEvent event );
 	void mouseDrag( MouseEvent event );	
-	void mouseUp( MouseEvent event );	
+	void mouseUp( MouseEvent event );
+    void keyUp( KeyEvent e );
 	void update();
 	void draw();
     
@@ -30,7 +31,6 @@ public:
 void FinalProjectApp::prepareSettings( Settings *settings ){
 	settings->setWindowSize( 800, 600 );
     settings->setFrameRate( FPS );
-    //settings->setFullScreen();
 }
 
 
@@ -39,7 +39,6 @@ void FinalProjectApp::setup()
     enableAlphaBlending();
     hideCursor();
     sm.push(&ms);
-    //ms.setup();
 }
 
 void FinalProjectApp::mouseDown( MouseEvent event ) {
@@ -58,15 +57,19 @@ void FinalProjectApp::mouseDrag( MouseEvent event ) {
     ms.mouseDrag(event);
 }
 
+void FinalProjectApp::keyUp( KeyEvent e ){
+    sm.onKeyUp(e);
+}
+
 void FinalProjectApp::update()
 {
-    ms.update();
+    sm.update();
 }
 
 void FinalProjectApp::draw()
 {
 	clear( Color( 0, 0, 0 ) );
-    ms.draw();
+    sm.draw();
 }
 
 

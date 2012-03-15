@@ -8,20 +8,13 @@
 PlayerBullet::PlayerBullet(Vec2f mMouseLoc)
 {
     location = mMouseLoc;
-    t = getElapsedSeconds();
     isAlive = true;
 }
-//
-//void PlayerBullet::init()
-//{
-//    bulletTexture = &bullet;
-//    //bulletTexture = Texture( loadImage( loadResource( "Bullet1.png" ) ) );
-//}
 
 void PlayerBullet::update()
 {
     //location -= Vec2f((sin(getElapsedSeconds()*40)*7),SPEED*(getElapsedSeconds() - t)*60);
-    location -= Vec2f(0,SPEED*(getElapsedSeconds() - t)*60);
+    location -= Vec2f(0,SPEED);
     t = getElapsedSeconds();
     if(location.y < 0)
     {

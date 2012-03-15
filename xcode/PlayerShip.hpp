@@ -15,6 +15,7 @@ using namespace gl;
 
 class PlayerShip
 {
+    enum State { Left, Straight, Right } direction;
 public:
     PlayerShip();
     void update(Vec2f location);
@@ -23,7 +24,7 @@ public:
     
     Vec2f mMouseLoc;
     Vec2f loc;
-    bool direction;
+    //bool direction;
     Texture shipTexture;
     PlayerGun pg;
 private:
