@@ -4,6 +4,8 @@
 #include <vector>
 #include "cinder/app/KeyEvent.h"
 
+using namespace ci::app;
+
 class SceneManager {
 public:
 	class Scene {
@@ -23,8 +25,13 @@ public:
 		virtual void draw() = 0;
 		virtual void update() = 0;
 		
-		virtual void onKeyUp(ci::app::KeyEvent &e) {}
-		virtual void onKeyDown(ci::app::KeyEvent &e) {}
+		virtual void onKeyUp(KeyEvent &e) {}
+		virtual void onKeyDown(KeyEvent &e) {}
+        
+        virtual void mouseUp(MouseEvent &event){}
+        virtual void mouseDown(MouseEvent &event){}
+        virtual void mouseMove(MouseEvent &event){}
+        virtual void mouseDrag(MouseEvent &event){}
 		
         virtual void onLoad(){};
         
@@ -78,15 +85,35 @@ public:
 			m_scenes.back()->update();		
 	}
 	
-	void onKeyUp(ci::app::KeyEvent &e) {
+	void onKeyUp(KeyEvent &e) {
 		if ( !m_scenes.empty() )
 			m_scenes.back()->onKeyUp(e);
 	}
 	
-	void onKeyDown(ci::app::KeyEvent &e) {
+	void onKeyDown(KeyEvent &e) {
 		if ( !m_scenes.empty() )
 			m_scenes.back()->onKeyDown(e);
 	}
+    
+    void mouseDown( MouseEvent &event ) {
+        if ( !m_scenes.empty() )
+			m_scenes.back()->mouseDown(event);
+    }
+    
+    void mouseUp( MouseEvent &event ){
+        if ( !m_scenes.empty() )
+			m_scenes.back()->mouseUp(event);
+    }
+    
+    void mouseMove( MouseEvent &event ) {
+        if ( !m_scenes.empty() )
+			m_scenes.back()->mouseMove(event);
+    }
+    
+    void mouseDrag( MouseEvent &event ) {
+        if ( !m_scenes.empty() )
+			m_scenes.back()->mouseDrag(event);
+    }
 
 	
 private:

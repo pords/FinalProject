@@ -21,6 +21,7 @@ public:
 	void mouseDrag( MouseEvent event );	
 	void mouseUp( MouseEvent event );
     void keyUp( KeyEvent e );
+    void keyDown( KeyEvent e );
 	void update();
 	void draw();
     
@@ -42,23 +43,27 @@ void FinalProjectApp::setup()
 }
 
 void FinalProjectApp::mouseDown( MouseEvent event ) {
-    ms.mouseDown(event);
+    sm.mouseDown(event);
 }
 
 void FinalProjectApp::mouseUp( MouseEvent event ){
-    ms.mouseUp(event);
+    sm.mouseUp(event);
 }
 
 void FinalProjectApp::mouseMove( MouseEvent event ) {
-    ms.mouseMove(event);
+    sm.mouseMove(event);
 }
 
 void FinalProjectApp::mouseDrag( MouseEvent event ) {
-    ms.mouseDrag(event);
+    sm.mouseDrag(event);
 }
 
 void FinalProjectApp::keyUp( KeyEvent e ){
     sm.onKeyUp(e);
+}
+
+void FinalProjectApp::keyDown( KeyEvent e ){
+    sm.onKeyDown(e);
 }
 
 void FinalProjectApp::update()

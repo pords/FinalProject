@@ -8,6 +8,8 @@
 
 #define DT .5f
 #define THING 1/2.f
+#define FRAMENO 1
+#define SIZE 64
 
 float t = 0;
 
@@ -36,7 +38,7 @@ void PlayerShip::update(Vec2f location)
     {
             
         case Left:
-            if( tween > -4 ){
+            if( tween > -FRAMENO ){
                 tween-=DT;
                 if( loc.x - mMouseLoc.x < 0 && t > THING ){
                     t = 0;
@@ -48,7 +50,7 @@ void PlayerShip::update(Vec2f location)
                 }
             }
             else{
-                tween = -4;
+                tween = -FRAMENO;
                 if( loc.x - mMouseLoc.x < 0 && t > THING ){
                     t = 0;
                     direction = Right;
@@ -82,7 +84,7 @@ void PlayerShip::update(Vec2f location)
             }
             break;
         case Right:
-            if( tween < 4 ){
+            if( tween < FRAMENO ){
                 tween+=DT;
                 if( loc.x - mMouseLoc.x > 0 && t > THING){
                     t = 0;
@@ -94,7 +96,7 @@ void PlayerShip::update(Vec2f location)
                 }
             }
             else{
-                tween = 4;
+                tween = FRAMENO;
                 if( loc.x - mMouseLoc.x > 0 && t > THING){
                     t = 0;
                     direction = Left;
@@ -106,14 +108,13 @@ void PlayerShip::update(Vec2f location)
             }
             break;
     }
-        
-    //cout << tween << endl;
+    
     pg.update(location);
 }
 
 void PlayerShip::draw()
 {
-    cinder::gl::draw( shipTexture, Area(Vec2f(100*(floor(tween)+4), 0), Vec2f(100*(floor(tween)+4) + 100, 100)), Rectf(mMouseLoc - Vec2f(50,0), mMouseLoc + Vec2f(50,100)) );
+    cinder::gl::draw( shipTexture, Area(Vec2f(SIZE*(floor(tween)+FRAMENO), 0), Vec2f(SIZE*(floor(tween)+FRAMENO) + SIZE, SIZE)), Rectf(mMouseLoc - Vec2f(SIZE/2,0), mMouseLoc + Vec2f(SIZE/2,SIZE)) );
     
     pg.draw();
 }
