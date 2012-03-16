@@ -32,7 +32,7 @@ public:
 };
 
 void FinalProjectApp::prepareSettings( Settings *settings ){
-	//settings->setWindowSize( 800, 600 );
+	settings->setWindowSize( 800, 600 );
     settings->setFrameRate( FPS );
     settings->setFullScreen();
 }
@@ -42,6 +42,7 @@ void FinalProjectApp::setup()
 {
     enableAlphaBlending();
     hideCursor();
+    es.init();
     sm.push(&es);
 }
 
