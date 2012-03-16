@@ -22,6 +22,7 @@
 		9A01D8E615029F030062CE89 /* PlayerShip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A01D8E515029F030062CE89 /* PlayerShip.cpp */; };
 		9A01D8ED150775BC0062CE89 /* PlayerBullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A01D8EC150775BC0062CE89 /* PlayerBullet.cpp */; };
 		9A558A88151251260064E52B /* ShipMap.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A558A87151251260064E52B /* ShipMap.png */; };
+		9A558A8B1512583D0064E52B /* BigPlane.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A558A8A1512583D0064E52B /* BigPlane.png */; };
 		9A7EE713150E665C0003EF9C /* MainScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7EE712150E665C0003EF9C /* MainScene.cpp */; };
 		9AEEC53C1508B5D800FCD132 /* Pship2.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 9AEEC53B1508B5D800FCD132 /* Pship2.bmp */; };
 		9AEEC5401508C95400FCD132 /* Ship.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AEEC53F1508C95400FCD132 /* Ship.png */; };
@@ -53,6 +54,8 @@
 		9A01D8EB150770BA0062CE89 /* PlayerBullet.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PlayerBullet.hpp; sourceTree = "<group>"; };
 		9A01D8EC150775BC0062CE89 /* PlayerBullet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PlayerBullet.cpp; sourceTree = "<group>"; };
 		9A558A87151251260064E52B /* ShipMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ShipMap.png; sourceTree = "<group>"; };
+		9A558A89151257350064E52B /* EnterScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EnterScene.hpp; sourceTree = "<group>"; };
+		9A558A8A1512583D0064E52B /* BigPlane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BigPlane.png; sourceTree = "<group>"; };
 		9A7EE70F150E5A8C0003EF9C /* SceneManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SceneManager.hpp; sourceTree = "<group>"; };
 		9A7EE711150E65F40003EF9C /* MainScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainScene.hpp; sourceTree = "<group>"; };
 		9A7EE712150E665C0003EF9C /* MainScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainScene.cpp; sourceTree = "<group>"; };
@@ -154,6 +157,7 @@
 				9A7EE70F150E5A8C0003EF9C /* SceneManager.hpp */,
 				9A7EE711150E65F40003EF9C /* MainScene.hpp */,
 				9A7EE714150E745B0003EF9C /* PauseScene.hpp */,
+				9A558A89151257350064E52B /* EnterScene.hpp */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -161,6 +165,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9A558A8A1512583D0064E52B /* BigPlane.png */,
 				9A558A87151251260064E52B /* ShipMap.png */,
 				9AEEC54D1508F82500FCD132 /* Bullet1.png */,
 				9AEEC53F1508C95400FCD132 /* Ship.png */,
@@ -235,6 +240,7 @@
 				9AEEC5401508C95400FCD132 /* Ship.png in Resources */,
 				9AEEC54E1508F82500FCD132 /* Bullet1.png in Resources */,
 				9A558A88151251260064E52B /* ShipMap.png in Resources */,
+				9A558A8B1512583D0064E52B /* BigPlane.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

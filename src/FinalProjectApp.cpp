@@ -2,6 +2,7 @@
 #include "cinder/gl/gl.h"
 #include "SceneManager.hpp"
 #include "MainScene.hpp"
+#include "EnterScene.hpp"
 #include <list>
 
 #define FPS 60.0f
@@ -25,13 +26,15 @@ public:
 	void update();
 	void draw();
     
-    MainScene ms;
+    //MainScene ms;
+    EnterScene es;
     SceneManager sm;
 };
 
 void FinalProjectApp::prepareSettings( Settings *settings ){
-	settings->setWindowSize( 800, 600 );
+	//settings->setWindowSize( 800, 600 );
     settings->setFrameRate( FPS );
+    settings->setFullScreen();
 }
 
 
@@ -39,7 +42,7 @@ void FinalProjectApp::setup()
 {
     enableAlphaBlending();
     hideCursor();
-    sm.push(&ms);
+    sm.push(&es);
 }
 
 void FinalProjectApp::mouseDown( MouseEvent event ) {
