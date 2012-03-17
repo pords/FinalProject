@@ -27,6 +27,7 @@ public:
 	virtual void draw();
 	virtual void update();
 	void onKeyUp(KeyEvent &e);
+    void onKeyDown(KeyEvent &e);
     void setup();
     void mouseDown( MouseEvent &event );
     void mouseUp( MouseEvent &event );

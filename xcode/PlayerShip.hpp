@@ -15,13 +15,17 @@ using namespace gl;
 
 class PlayerShip
 {
-    enum State { Left, Straight, Right } direction;
+    //enum State { Left, Straight, Right, UpperLeft, UpperRight, LowerLeft, LowerRight, Up, Down } state;
+    int state; //UDLRF
 public:
     PlayerShip();
-    void update(Vec2f location);
+    void update();
     void draw();
     void init();
+    void onKeyDown(KeyEvent &e);
+    void onKeyUp(KeyEvent &e);
     
+    Vec2f location;
     Vec2f mMouseLoc;
     Vec2f loc;
     //bool direction;

@@ -12,44 +12,59 @@ using namespace ci::app;
 using namespace std;
 using namespace gl;
 
-bool paused = false;
+Vec2f stars[500];
 
 void MainScene::onLoad()
 {
     ps.init();
+    for( int i = 0; i < 500; i++ )
+    {
+        stars[i] = Vec2f(Rand::randFloat(ci::app::AppBasic::get()->getWindowWidth()), Rand::randFloat(ci::app::AppBasic::get()->getWindowWidth()));
+    }
+    
 }
 
 void MainScene::mouseDown( MouseEvent &event ) {
-    ps.pg.firing = true;
-    mMouseLoc = event.getPos();
+    //ps.pg.firing = true;
+    //mMouseLoc = event.getPos();
 }
 
 void MainScene::mouseUp( MouseEvent &event ){
-    ps.pg.firing = false;
+    //ps.pg.firing = false;
 }
 
 void MainScene::mouseMove( MouseEvent &event ) {
-    mMouseLoc = event.getPos();
+    //mMouseLoc = event.getPos();
 }
 
 void MainScene::mouseDrag( MouseEvent &event ) {
-    mMouseLoc = event.getPos();
+    //mMouseLoc = event.getPos();
 }
 
 void MainScene::update()
 {
-    ps.update(mMouseLoc);
+    ps.update();
 }
 
 void MainScene::draw()
 {
     gl::color(1.f,1.f,1.f);
+    for( int i = 0; i < 500; i++ )
+    {
+        drawSolidCircle( stars[i], Rand::randFloat( 1.3f ));
+    }
     ps.draw();
 }
 
 void MainScene::onKeyUp(KeyEvent &e){
     if ( e.getCode() == KeyEvent::KEY_SPACE ) {
-        paused = true;
         getManager()->push(&pause);
     }
+    else{
+        ps.onKeyUp(e);
+    }
+}
+
+void MainScene::onKeyDown(KeyEvent &e){
+    ps.onKeyDown(e);
 }
