@@ -6,8 +6,11 @@
 #include "SceneManager.hpp"
 #include "cinder/Font.h"
 #include "cinder/Color.h"
+#include "cinder/Rect.h"
 
 #define PLANE_TRANSITION_DURATION 0.4f
+#define TRANSITION_DURATION ( 0.5f + PLANE_TRANSITION_DURATION )
+#define BLINK_DURATION .17f
 
 class EnterScene : public SceneManager::Scene {
 	float trans;
@@ -20,10 +23,11 @@ class EnterScene : public SceneManager::Scene {
     Texture high;
     Texture quit;
     float time;
+    float scale;
     
-    enum State{Play, High, Quit} selected;
+    enum State{Play, High, Quit, Transition} selected;
 public:
-	EnterScene() : trans(0), s(loadResource("AGENCYR.TTF"), 160), k("HelveticaNeue-Ultralight", 120), selected(Play), time(0) {}
+	EnterScene() : trans(0), s(loadResource("AGENCYR.TTF"), 160), k("HelveticaNeue-Ultralight", 120), selected(Play), time(0), scale(1) {}
     
     void init(){
         bg = Texture(loadImage(loadResource("bg.png")));
@@ -34,15 +38,12 @@ public:
     }
 	
 	virtual void draw() {
-		//ci::app::AppBasic *a = ci::app::AppBasic::get();
-		
-		const float t = trans/PLANE_TRANSITION_DURATION;
-		const float x = t*t*(3 - 2 * t);
+		ci::app::AppBasic *a = ci::app::AppBasic::get();
+        float t = trans/PLANE_TRANSITION_DURATION;
+		float x = t*t*(3 - 2 * t);
         
         ColorA menu(118/255.f, 118/255.f, 118/255.f, 1.f * x);
         ColorA title(95/255.f, 95/255.f, 95/255.f, 1.f * x);
-		
-		//ci::gl::color(0.0f,0.0f,0.0f, 1.f);
 		
         ci::gl::color(1.f,1.f,1.f);
 		cinder::gl::draw( bg, ci::Vec2f(0,0) );
@@ -55,20 +56,35 @@ public:
         ci::gl::drawStringRight("high scores", ci::Vec2f(1235 ,465), 
                            menu, k);
         ci::gl::drawStringRight("quit game", ci::Vec2f(1235 ,625), 
-                           menu, k);
+                                menu, k);
+        Rectf rect (ci::Vec2f(738,297), ci::Vec2f(738 + 502,297 + 127));
         switch(selected)
         {
             case Play:
-                color(1.f, 1.f,1.f,1.f * sin((time+=.12f)) * .5f + .5f);
+                color(1.f, 1.f,1.f,1.f * sin((time+=BLINK_DURATION)) * .5f + .5f);
                 ci::gl::draw(play, ci::Vec2f(738,297));
                 break;
             case High:
-                color(1.f, 1.f,1.f,1.f * sin((time+=.12f)) * .5f + .5f);
+                color(1.f, 1.f,1.f,1.f * sin((time+=BLINK_DURATION)) * .5f + .5f);
                 ci::gl::draw(high, ci::Vec2f(675,457));
                 break;
             case Quit:
-                color(1.f, 1.f,1.f,1.f * sin((time+=.12f)) * .5f + .5f);
+                color(1.f, 1.f,1.f,1.f * sin((time+=BLINK_DURATION)) * .5f + .5f);
                 ci::gl::draw(quit, ci::Vec2f(753,617));
+                break;
+            case Transition:
+                t = trans/TRANSITION_DURATION;
+                x = t*t*(3 - 2 * t);
+                color(0.f, 0.f, 0.f, 1.f * x);
+                ci::gl::drawSolidRect(ci::Rectf(0,0,a->getWindowWidth(), a->getWindowHeight()));
+                x = pow(t, 5) + 0.1f;
+                color(1.f,1.f,1.f,1.f * (.7-x));
+                rect.scaleCentered(Vec2f(10,10) * x);
+                ci::gl::draw(play, rect);
+                if( t == 1 )
+                {
+                    getManager()->push(&ms);
+                }
                 break;
         }
         if( time > 6.28 ){
@@ -77,18 +93,31 @@ public:
 	}
 	
 	virtual void update() {
-        if( trans < PLANE_TRANSITION_DURATION ){
-            trans += 1/ci::app::AppBasic::get()->getFrameRate();
+        if( selected != Transition )
+        {
+            if( trans < PLANE_TRANSITION_DURATION ){
+                trans += 1/ci::app::AppBasic::get()->getFrameRate();
+            }
+            else{
+                trans = PLANE_TRANSITION_DURATION;
+            }
         }
-        else{
-            trans = PLANE_TRANSITION_DURATION;
+        else
+        {
+            if( trans < TRANSITION_DURATION  ){
+                trans += 1/ci::app::AppBasic::get()->getFrameRate();
+            }
+            else{
+                trans = TRANSITION_DURATION;
+            }
         }
 	}
 	virtual void onKeyUp(ci::app::KeyEvent &e) {
         switch( selected )
         {
             case Play:
-                if ( ( e.getCode() == ci::app::KeyEvent::KEY_KP_ENTER || e.getCode() == ci::app::KeyEvent::KEY_RETURN ) ) {            getManager()->push(&ms);
+                if ( ( e.getCode() == ci::app::KeyEvent::KEY_KP_ENTER || e.getCode() == ci::app::KeyEvent::KEY_RETURN ) ) {     
+                    selected = Transition;
                 }
                 break;
             case High:
@@ -99,6 +128,8 @@ public:
                 if ( ( e.getCode() == ci::app::KeyEvent::KEY_KP_ENTER || e.getCode() == ci::app::KeyEvent::KEY_RETURN ) ) {            
                      ci::app::AppBasic::get()->quit();
                 }
+                break;
+            case Transition:
                 break;
         }
 	}
@@ -137,6 +168,8 @@ public:
                     time = 0;
                     selected = Play;
                 }
+                break;
+            case Transition:
                 break;
         }
     }

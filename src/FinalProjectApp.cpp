@@ -26,7 +26,6 @@ public:
 	void update();
 	void draw();
     
-    //MainScene ms;
     EnterScene es;
     SceneManager sm;
 };

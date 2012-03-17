@@ -15,7 +15,7 @@ float t = 0;
 
 PlayerShip::PlayerShip()
 {
-    //mMouseLoc = Vec2f(0,0);
+    //mMouseLoc = Vec2f(600,400);
     direction = Straight;
     tween = 0;
 }
