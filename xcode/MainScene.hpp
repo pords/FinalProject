@@ -20,7 +20,14 @@ class MainScene : public SceneManager::Scene {
 		//delete this;
 	}
     
+    virtual void onActivate(){
+        ps.state = 0;
+        ps.pg.firing = false;
+    }
+    
     PauseScene pause;
+    Texture lifeBar;
+    Texture lifeCover;
     
 public:
 	MainScene() : pause(this) {};

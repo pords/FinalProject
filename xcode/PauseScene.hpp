@@ -5,14 +5,30 @@
 #include "cinder/app/AppBasic.h"
 #include "SceneManager.hpp"
 
-#define PAUSESCENE_TRANSITION_DURATION 0.7f
+#define PAUSESCENE_TRANSITION_DURATION 0.3f
+#define XPOS 875
 
 class PauseScene : public SceneManager::Scene {
 	SceneManager::Scene *base;
 	float trans;
 	enum State { In, Active, Out } state;
+    enum Selected {Resume, Back, Quit} selected;
+    Texture pauseTexture;
+    Texture pointer;
+    Font k;
 public:
-	PauseScene(SceneManager::Scene *base) : base(base), trans(0), state(In) {}
+	PauseScene(SceneManager::Scene *base) : base(base), trans(0), state(In), k("HelveticaNeue-Ultralight", 48), selected(Resume) {}
+    
+    void init()
+    {
+        pauseTexture = Texture(loadImage(loadResource("pause.png")));
+        pointer = Texture(loadImage(loadResource("pointer.png")));
+    }
+    
+    void onActivate()
+    {
+        selected = Resume;
+    }
 	
 	virtual void draw() {
 		if ( base ){
@@ -24,11 +40,28 @@ public:
 		const float t = trans/PAUSESCENE_TRANSITION_DURATION;
 		const float x = t*t*(3 - 2 * t);
 		
-		ci::gl::color(0.0f,0.0f,0.0f, 0.55f * x);
-		
+        ColorA c(213/255.f, 213/255.f, 213/255.f, 1.f * x);
+		ci::gl::color(0.0f,0.0f,0.0f, 0.75f * x);
 		ci::gl::drawSolidRect(ci::Rectf(0,0,a->getWindowWidth(), a->getWindowHeight()));
-		
-		ci::gl::drawStringRight("Game Paused", ci::Vec2f(120 * x,100));
+        
+		ci::gl::color(1.0f,1.0f,1.0f, 1.0f * x);
+        ci::gl::draw(pauseTexture, Vec2f(0,0));
+        
+		ci::gl::drawStringRight("resume game", ci::Vec2f(XPOS ,325), c, k);
+		ci::gl::drawStringRight("back to main menu", ci::Vec2f(XPOS ,425), c, k);
+		ci::gl::drawStringRight("quit game", ci::Vec2f(XPOS ,525), c, k);
+        
+        switch (selected) {
+            case Resume:
+                ci::gl::draw(pointer, Vec2f(565,333));
+                break;
+            case Back:
+                ci::gl::draw(pointer, Vec2f(460,433));
+                break;
+            case Quit:
+                ci::gl::draw(pointer, Vec2f(640,533));
+                break;
+        }
 	}
 	
 	virtual void update() {
@@ -56,10 +89,56 @@ public:
 		
 	}
 	virtual void onKeyUp(ci::app::KeyEvent &e) {
-		if ( e.getCode() == ci::app::KeyEvent::KEY_SPACE && state != In  ) {
-			state = Out;
-		}
-	}
+        switch( selected )
+        {
+            case Resume:
+                if ( ( e.getCode() == ci::app::KeyEvent::KEY_KP_ENTER || e.getCode() == ci::app::KeyEvent::KEY_RETURN ) && state != In ) {     
+                    state = Out;
+                }
+                break;
+            case Back:
+                if ( ( e.getCode() == ci::app::KeyEvent::KEY_KP_ENTER || e.getCode() == ci::app::KeyEvent::KEY_RETURN ) ) {                    getManager()->bot()->onActivate();
+                    getManager()->m_scenes.erase(getManager()->m_scenes.end() - 2, getManager()->m_scenes.end());
+                }
+                break;
+            case Quit:
+                if ( ( e.getCode() == ci::app::KeyEvent::KEY_KP_ENTER || e.getCode() == ci::app::KeyEvent::KEY_RETURN ) ) {            
+                    ci::app::AppBasic::get()->quit();
+                }
+                break;
+        }
+    }
+    
+    void onKeyDown(ci::app::KeyEvent &e)
+    {
+        switch( selected )
+        {
+            case Resume:
+                if( e.getCode() == ci::app::KeyEvent::KEY_DOWN ){
+                    selected = Back;
+                }
+                else if( e.getCode() == ci::app::KeyEvent::KEY_UP ){
+                    selected = Quit;
+                }
+                break;
+            case Back:
+                if( e.getCode() == ci::app::KeyEvent::KEY_DOWN ){
+                    selected = Quit;
+                }
+                else if( e.getCode() == ci::app::KeyEvent::KEY_UP ){
+                    selected = Resume;
+                }
+                break;
+            case Quit:
+                if( e.getCode() == ci::app::KeyEvent::KEY_UP ){
+                    selected = Back;
+                }
+                else if( e.getCode() == ci::app::KeyEvent::KEY_DOWN ){
+                    selected = Resume;
+                }
+                break;
+        }
+    }
 };
 
 

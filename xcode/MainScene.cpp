@@ -17,10 +17,13 @@ Vec2f stars[500];
 void MainScene::onLoad()
 {
     ps.init();
+    pause.init();
     for( int i = 0; i < 500; i++ )
     {
         stars[i] = Vec2f(Rand::randFloat(ci::app::AppBasic::get()->getWindowWidth()), Rand::randFloat(ci::app::AppBasic::get()->getWindowWidth()));
     }
+    lifeBar = Texture(loadImage(loadResource("lifeBar.png")));
+    lifeCover = Texture(loadImage(loadResource("lifeBar.png")));
     
 }
 
@@ -51,13 +54,13 @@ void MainScene::draw()
     gl::color(1.f,1.f,1.f);
     for( int i = 0; i < 500; i++ )
     {
-        drawSolidCircle( stars[i], Rand::randFloat( 1.3f ));
+        //drawSolidCircle( stars[i], Rand::randFloat( 1.3f ));
     }
     ps.draw();
 }
 
 void MainScene::onKeyUp(KeyEvent &e){
-    if ( e.getCode() == KeyEvent::KEY_SPACE ) {
+    if ( e.getCode() == KeyEvent::KEY_ESCAPE ) {
         getManager()->push(&pause);
     }
     else{

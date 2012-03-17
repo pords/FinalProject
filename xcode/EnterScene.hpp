@@ -7,6 +7,7 @@
 #include "cinder/Font.h"
 #include "cinder/Color.h"
 #include "cinder/Rect.h"
+#include "MainScene.hpp"
 
 #define PLANE_TRANSITION_DURATION 0.4f
 #define TRANSITION_DURATION ( 0.5f + PLANE_TRANSITION_DURATION )
@@ -35,6 +36,12 @@ public:
         play = Texture(loadImage(loadResource("playglow.png")));
         high = Texture(loadImage(loadResource("highglow.png")));
         quit = Texture(loadImage(loadResource("quitglow.png")));
+    }
+    
+    void onActivate()
+    {
+        trans = 0;
+        selected = Play;
     }
 	
 	virtual void draw() {
@@ -136,7 +143,6 @@ public:
     
     void onKeyDown(ci::app::KeyEvent &e)
     {
-        
         switch( selected )
         {
             case Play:

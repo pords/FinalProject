@@ -16,7 +16,6 @@ using namespace gl;
 class PlayerShip
 {
     //enum State { Left, Straight, Right, UpperLeft, UpperRight, LowerLeft, LowerRight, Up, Down } state;
-    int state; //UDLRF
 public:
     PlayerShip();
     void update();
@@ -31,6 +30,8 @@ public:
     //bool direction;
     Texture shipTexture;
     PlayerGun pg;
+    
+    int state; //UDLRF
 private:
     float remainingLife;
     float tween;

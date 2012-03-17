@@ -11,6 +11,7 @@ public:
 	class Scene {
 		bool m_active, m_loaded;
 		friend class SceneManager;
+        friend class PauseScene;
 		
 		SceneManager *m_manager;
 		
@@ -40,6 +41,9 @@ public:
 	
 	typedef Scene* SceneRef;
 	
+    int getSize(){
+        return m_scenes.size();
+    }
 	
 	void push(SceneRef s) {
 		if ( !m_scenes.empty() ) {			
@@ -70,11 +74,21 @@ public:
 		prev->m_active = true;
 		prev->onActivate();
 	}
+    
+    void popFront(){
+        if ( m_scenes.empty() ) return;
+		m_scenes.erase(m_scenes.begin());
+    }
 	
 	SceneRef top() const {
 		if ( m_scenes.empty() ) return 0;
 		return m_scenes.back();
 	}
+    
+    SceneRef bot() const{
+        if(m_scenes.empty()) return 0;
+        return m_scenes.front();
+    }
 	
 	void draw() {
 		if ( !m_scenes.empty() )
@@ -115,8 +129,6 @@ public:
 			m_scenes.back()->mouseDrag(event);
     }
 
-	
-private:
 	std::vector<SceneRef> m_scenes;
 };
 

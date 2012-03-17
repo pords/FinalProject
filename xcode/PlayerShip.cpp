@@ -17,7 +17,6 @@ float t = 0;
 
 PlayerShip::PlayerShip()
 {
-    //mMouseLoc = Vec2f(600,400);
     location = Vec2f(600,400);
     tween = 0;
     state = 0;
