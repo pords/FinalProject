@@ -6,7 +6,8 @@
 #include "SceneManager.hpp"
 
 #define PAUSESCENE_TRANSITION_DURATION 0.3f
-#define XPOS 875
+#define XPOS 885
+#define PAD (10 + pointer.getWidth())
 
 class PauseScene : public SceneManager::Scene {
 	SceneManager::Scene *base;
@@ -15,6 +16,7 @@ class PauseScene : public SceneManager::Scene {
     enum Selected {Resume, Back, Quit} selected;
     Texture pauseTexture;
     Texture pointer;
+    Texture resume, back, quit;
     Font k;
     Selected prev;
     float thingy;
@@ -25,6 +27,9 @@ public:
     {
         pauseTexture = Texture(loadImage(loadResource("pause.png")));
         pointer = Texture(loadImage(loadResource("pointer.png")));
+        resume = Texture(loadImage(loadResource("resume.png")));
+        back = Texture(loadImage(loadResource("back.png")));
+        quit = Texture(loadImage(loadResource("quit.png")));
     }
     
     void onActivate()
@@ -49,19 +54,23 @@ public:
 		ci::gl::color(1.0f,1.0f,1.0f, 1.0f * x);
         ci::gl::draw(pauseTexture, Vec2f(0,0));
         
-		ci::gl::drawStringRight("resume game", ci::Vec2f(XPOS ,325), c, k);
-		ci::gl::drawStringRight("back to main menu", ci::Vec2f(XPOS ,425), c, k);
-		ci::gl::drawStringRight("quit game", ci::Vec2f(XPOS ,525), c, k);
+//		ci::gl::drawStringRight("resume game", ci::Vec2f(XPOS ,325), c, k);
+//		ci::gl::drawStringRight("back to main menu", ci::Vec2f(XPOS ,425), c, k);
+//		ci::gl::drawStringRight("quit game", ci::Vec2f(XPOS ,525), c, k);
+        
+        ci::gl::draw(resume, ci::Vec2f(XPOS - resume.getWidth(), 320));
+        ci::gl::draw(back, ci::Vec2f(XPOS - back.getWidth(), 420));
+        ci::gl::draw(quit, ci::Vec2f(XPOS - quit.getWidth(), 520));
         
         switch (selected) {
             case Resume:
-                ci::gl::draw(pointer, Vec2f(565,333));
+                ci::gl::draw(pointer, Vec2f(XPOS - resume.getWidth() - PAD,323));
                 break;
             case Back:
-                ci::gl::draw(pointer, Vec2f(460,433));
+                ci::gl::draw(pointer, Vec2f(XPOS - back.getWidth() - PAD,433));
                 break;
             case Quit:
-                ci::gl::draw(pointer, Vec2f(640,533));
+                ci::gl::draw(pointer, Vec2f(XPOS - quit.getWidth() - PAD,533));
                 break;
         }
 	}

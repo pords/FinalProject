@@ -25,6 +25,11 @@ class EnterScene : public SceneManager::Scene {
     Texture high;
     Texture quit;
     Texture cglow;
+    Texture playgame;
+    Texture continuegame;
+    Texture quitgame;
+    Texture highscores;
+    Texture titleTexture;
     float time;
     float scale;
     
@@ -39,6 +44,12 @@ public:
         high = Texture(loadImage(loadResource("highglow.png")));
         quit = Texture(loadImage(loadResource("quitglow.png")));
         cglow = Texture(loadImage(loadResource("continueglow.png")));
+        playgame = Texture(loadImage(loadResource("playgame.png")));
+        continuegame = Texture(loadImage(loadResource("continue.png")));
+        quitgame = Texture(loadImage(loadResource("quitgame.png")));
+        highscores = Texture(loadImage(loadResource("highscores.png")));
+        titleTexture = Texture(loadImage(loadResource("beyondinfinity.png")));
+        
         isContinuing = false;
     }
     
@@ -59,10 +70,12 @@ public:
         ci::gl::color(1.f,1.f,1.f);
 		cinder::gl::draw( bg, ci::Vec2f(0,0) );
         cinder::gl::draw( planes, ci::Vec2f(-596, -470) + Vec2f(596, 470) * x );
+                
+		cinder::gl::draw( titleTexture, ci::Vec2f(505,55) );
         
-        ci::gl::drawStringRight("Title Something", ci::Vec2f(1235, 85), title, s);
+        //ci::gl::drawStringRight("Title Something", ci::Vec2f(1235, 85), title, s);
         
-        if (isContinuing) {
+        /*if (isContinuing) {
             ci::gl::drawStringRight("continue", ci::Vec2f(1235 ,305), 
                                     menu, k);
         }
@@ -73,7 +86,16 @@ public:
         ci::gl::drawStringRight("high scores", ci::Vec2f(1235 ,465), 
                            menu, k);
         ci::gl::drawStringRight("quit game", ci::Vec2f(1235 ,625), 
-                                menu, k);
+                                menu, k);*/
+        if (isContinuing) {
+            ci::gl::draw(continuegame, ci::Vec2f(821+ 9,297+ 9));
+         }
+         else{
+             ci::gl::draw(playgame, ci::Vec2f(738 + 9,297 + 9));   
+         }
+         ci::gl::draw(highscores, ci::Vec2f(675+ 9,457+ 9));
+         ci::gl::draw(quitgame, ci::Vec2f(753+ 9,617+ 9));
+        
         Rectf rect (ci::Vec2f(738,297), ci::Vec2f(738 + 502,297 + 127));
         switch(selected)
         {
