@@ -14,6 +14,7 @@
 #define BLINK_DURATION .17f
 
 class EnterScene : public SceneManager::Scene {
+    bool isContinuing;
 	float trans;
     MainScene ms;
     Font s;
@@ -23,6 +24,7 @@ class EnterScene : public SceneManager::Scene {
     Texture play;
     Texture high;
     Texture quit;
+    Texture cglow;
     float time;
     float scale;
     
@@ -36,6 +38,8 @@ public:
         play = Texture(loadImage(loadResource("playglow.png")));
         high = Texture(loadImage(loadResource("highglow.png")));
         quit = Texture(loadImage(loadResource("quitglow.png")));
+        cglow = Texture(loadImage(loadResource("continueglow.png")));
+        isContinuing = false;
     }
     
     void onActivate()
@@ -58,8 +62,14 @@ public:
         
         ci::gl::drawStringRight("Title Something", ci::Vec2f(1235, 85), title, s);
         
-        ci::gl::drawStringRight("play game", ci::Vec2f(1235 ,305), 
-                           menu, k);
+        if (isContinuing) {
+            ci::gl::drawStringRight("continue", ci::Vec2f(1235 ,305), 
+                                    menu, k);
+        }
+        else{
+            ci::gl::drawStringRight("play game", ci::Vec2f(1235 ,305), 
+                                    menu, k);
+        }
         ci::gl::drawStringRight("high scores", ci::Vec2f(1235 ,465), 
                            menu, k);
         ci::gl::drawStringRight("quit game", ci::Vec2f(1235 ,625), 
@@ -69,7 +79,12 @@ public:
         {
             case Play:
                 color(1.f, 1.f,1.f,1.f * sin((time+=BLINK_DURATION)) * .5f + .5f);
-                ci::gl::draw(play, ci::Vec2f(738,297));
+                if (isContinuing) {
+                    ci::gl::draw(cglow, ci::Vec2f(821, 297));
+                }
+                else{
+                    ci::gl::draw(play, ci::Vec2f(738,297));   
+                }
                 break;
             case High:
                 color(1.f, 1.f,1.f,1.f * sin((time+=BLINK_DURATION)) * .5f + .5f);
@@ -87,10 +102,15 @@ public:
                 x = pow(t, 5) + 0.1f;
                 color(1.f,1.f,1.f,1.f * (.7-x));
                 rect.scaleCentered(Vec2f(10,10) * x);
-                ci::gl::draw(play, rect);
+                if(isContinuing){
+                    ci::gl::draw(cglow, rect);
+                }
+                else
+                    ci::gl::draw(play, rect);
                 if( t == 1 )
                 {
                     getManager()->push(&ms);
+                    isContinuing = true;
                 }
                 break;
         }

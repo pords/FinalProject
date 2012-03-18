@@ -18,7 +18,13 @@ void PlayerGun::update(Vec2f mMouseLoc)
     {
         if( t > 1.0/BPS)
         {
-            bullets.push_back(PlayerBullet(mMouseLoc));
+            bullets.push_back(PlayerBullet(mMouseLoc, Vec2f(cos(pi/3), -sin(pi/3))));
+            bullets.push_back(PlayerBullet(mMouseLoc, Vec2f(cos(pi/6), -sin(pi/6))));
+            bullets.push_back(PlayerBullet(mMouseLoc, Vec2f(cos(pi/4), -sin(pi/4))));
+            bullets.push_back(PlayerBullet(mMouseLoc, Vec2f(cos(pi/2), -sin(pi/2))));
+            bullets.push_back(PlayerBullet(mMouseLoc, Vec2f(cos(3*pi/4), -sin(3*pi/4))));
+            bullets.push_back(PlayerBullet(mMouseLoc, Vec2f(cos(5*pi/6), -sin(5*pi/6))));
+            bullets.push_back(PlayerBullet(mMouseLoc, Vec2f(cos(2*pi/3), -sin(2*pi/3))));
             t = 0;
         }
     }

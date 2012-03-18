@@ -14,12 +14,13 @@ class PlayerBullet
 {
 public:
     PlayerBullet();
-    PlayerBullet(Vec2f mMouseLoc);
+    PlayerBullet(Vec2f mMouseLoc, Vec2f d);
     void update();
     void draw(Texture bullet);
     void collide();
     Vec2f getLocation();
     bool isAlive;
+    Vec2f direction;
     
     //Texture bullet( loadImage( loadResource( "Bullet1.png" ) ) );
     //Texture * bulletTexture;

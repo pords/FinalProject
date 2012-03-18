@@ -33,7 +33,7 @@ public:
 void FinalProjectApp::prepareSettings( Settings *settings ){
 	settings->setWindowSize( 800, 600 );
     settings->setFrameRate( FPS );
-    //settings->setFullScreen();
+    settings->setFullScreen();
 }
 
 

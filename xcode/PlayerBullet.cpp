@@ -2,11 +2,11 @@
 #include "PlayerBullet.hpp"
 #include "PlayerShip.hpp"
 #include "MainScene.hpp"
+#define SPEED 15
 
-#define SPEED 20
-
-PlayerBullet::PlayerBullet(Vec2f mMouseLoc)
+PlayerBullet::PlayerBullet(Vec2f mMouseLoc, Vec2f d)
 {
+    direction = d;
     location = mMouseLoc;
     isAlive = true;
 }
@@ -14,7 +14,8 @@ PlayerBullet::PlayerBullet(Vec2f mMouseLoc)
 void PlayerBullet::update()
 {
     //location -= Vec2f((sin(getElapsedSeconds()*40)*7),SPEED*(getElapsedSeconds() - t)*60);
-    location -= Vec2f(0,SPEED);
+    cout << direction * SPEED << endl;
+    location += direction * SPEED;
     t = getElapsedSeconds();
     if(location.y < 0)
     {

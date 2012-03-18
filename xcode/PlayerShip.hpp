@@ -15,7 +15,6 @@ using namespace gl;
 
 class PlayerShip
 {
-    //enum State { Left, Straight, Right, UpperLeft, UpperRight, LowerLeft, LowerRight, Up, Down } state;
 public:
     PlayerShip();
     void update();

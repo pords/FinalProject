@@ -16,8 +16,10 @@ class PauseScene : public SceneManager::Scene {
     Texture pauseTexture;
     Texture pointer;
     Font k;
+    Selected prev;
+    float thingy;
 public:
-	PauseScene(SceneManager::Scene *base) : base(base), trans(0), state(In), k("HelveticaNeue-Ultralight", 48), selected(Resume) {}
+	PauseScene(SceneManager::Scene *base) : base(base), trans(0), state(In), k("HelveticaNeue-Ultralight", 48), selected(Resume), thingy(0) {}
     
     void init()
     {
@@ -115,25 +117,31 @@ public:
         {
             case Resume:
                 if( e.getCode() == ci::app::KeyEvent::KEY_DOWN ){
+                    prev = Resume;
                     selected = Back;
                 }
                 else if( e.getCode() == ci::app::KeyEvent::KEY_UP ){
+                    prev = Resume;
                     selected = Quit;
                 }
                 break;
             case Back:
                 if( e.getCode() == ci::app::KeyEvent::KEY_DOWN ){
+                    prev = Back;
                     selected = Quit;
                 }
                 else if( e.getCode() == ci::app::KeyEvent::KEY_UP ){
+                    prev = Back;
                     selected = Resume;
                 }
                 break;
             case Quit:
                 if( e.getCode() == ci::app::KeyEvent::KEY_UP ){
+                    prev = Quit;
                     selected = Back;
                 }
                 else if( e.getCode() == ci::app::KeyEvent::KEY_DOWN ){
+                    prev = Quit;
                     selected = Resume;
                 }
                 break;
