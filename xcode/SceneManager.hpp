@@ -75,6 +75,13 @@ public:
 		prev->onActivate();
 	}
     
+    void poppop(int n){
+        for( int i = 0; i < n; i++ )
+        {
+            pop();
+        }
+    }
+    
     void popFront(){
         if ( m_scenes.empty() ) return;
 		m_scenes.erase(m_scenes.begin());

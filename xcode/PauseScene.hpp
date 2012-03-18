@@ -108,8 +108,9 @@ public:
                 }
                 break;
             case Back:
-                if ( ( e.getCode() == ci::app::KeyEvent::KEY_KP_ENTER || e.getCode() == ci::app::KeyEvent::KEY_RETURN ) ) {                    getManager()->bot()->onActivate();
-                    getManager()->m_scenes.erase(getManager()->m_scenes.end() - 2, getManager()->m_scenes.end());
+                if ( ( e.getCode() == ci::app::KeyEvent::KEY_KP_ENTER || e.getCode() == ci::app::KeyEvent::KEY_RETURN ) ) {                    //getManager()->bot()->onActivate();
+                    getManager()->poppop(2);
+                    //getManager()->m_scenes.erase(getManager()->m_scenes.end() - 2, getManager()->m_scenes.end());
                 }
                 break;
             case Quit:

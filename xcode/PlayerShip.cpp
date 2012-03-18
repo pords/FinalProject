@@ -30,7 +30,7 @@ void PlayerShip::init()
 
 void PlayerShip::update()
 {
-    //t += 1/ci::app::AppBasic::get()->getFrameRate(); 
+    //t += 1/ci::app::AppBasic::get()->getFrameRate();
     loc = mMouseLoc;
     mMouseLoc = location;
     
